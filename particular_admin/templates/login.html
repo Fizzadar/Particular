@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="tiny-wrapper">
+    <h1>Login</h1>
+    <form method="POST" action="{{ url_for('post_login') }}">
+        {{ csrf_input() }}
+
+        <div>
+            <label for="an_email" class="required">Email</label>
+            <input type="email" name="an_email" />
+
+            <button class="green" type="submit">Login</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
