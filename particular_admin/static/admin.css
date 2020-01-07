@@ -1,0 +1,80 @@
+header {
+    margin: 20px 0 50px 0;
+    font-size: 18px;
+}
+    header .wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+    header a.home-link {
+        font-weight: bold;
+    }
+
+footer {
+    margin-top: 50px;
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 24px;
+    line-height: 36px;
+}
+
+p.intro {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 36px;
+}
+p.center {
+    text-align: center;
+}
+
+div.intro-wrapper {
+    margin: 100px auto;
+}
+
+form {}
+form.inline {
+    display: inline-block;
+}
+    form label {
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+    }
+    form input, form textarea {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    form input[type=checkbox] {
+        width: auto;
+    }
+    form div.buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+table {
+    line-height: 24px;
+    background: white;
+    border-spacing: 0;
+    margin-left: -1%;
+    padding: 1%;
+    width: 102%;
+}
+th {
+    text-align: left;
+    padding-bottom: 10px;
+}
+tr td {
+    padding: 0 2px;
+    height: 44px;
+}
+tr:hover td {
+    background: #F7F7F7;
+}
+td.fitwidth {
+    width: 1px;
+    white-space: nowrap;
+}
