@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block page_title %}/ Submit Website{% endblock %}
+
+{% block content %}
+<div class="tiny-wrapper">
+    <h1>Submit Website</h1>
+    <form method="POST" action="{{ url_for('post_submit_website') }}">
+        {{ csrf_input() }}
+
+        <div>
+            <label for="root_url" class="required">Root URL</label>
+            <input type="text" name="root_url" />
+        </div>
+
+        <div class="buttons">
+            <button class="green" type="submit">Submit</button>
+            <a href="{{ url_for('get_websites') }}">back to websites</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block page_title %}/ Edit Website{% endblock %}
+
+{% block content %}
+<div class="tiny-wrapper">
+    <h1>Edit Website</h1>
+    <form method="POST" action="{{ url_for('post_edit_website', hashed_id=website.hash_id) }}">
+        {{ csrf_input() }}
+
+        <div>
+            <label for="root_url" class="required">Root URL</label>
+            <input type="text" id="root_url" name="root_url" value="{{ website.root_url }}" />
+        </div>
+
+        <div>
+            <label for="allowed_domains" class="required">Allowed Domains (in addition to above)</label>
+            <textarea id="allowed_domains" name="allowed_domains">{{ website.allowed_domains }}</textarea>
+        </div>
+
+        <div>
+            <label for="active">Active</label>
+            <input type="checkbox" id="active" name="active"{% if website.active %} checked{% endif %} />
+        </div>
+
+        <div class="buttons">
+            <button class="green" type="submit">Submit</button>
+            <a href="{{ url_for('get_websites') }}">back to websites</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

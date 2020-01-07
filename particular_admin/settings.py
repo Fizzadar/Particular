@@ -21,6 +21,8 @@ KEYMASTER_LEVEL = 10
 
 HASH_IDS_MIN_LENGTH = 6
 
+WEBSITE_HASH_IDS_SALT = environ['WEBSITE_HASH_IDS_SALT']
+
 MAILGUN_FROM_ADDRESS = "Fizzadar's Particular <pointlessrambler@gmail.com>"
 MAILGUN_DOMAIN = 'mail.particular.fizzadar.com'
 

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block page_title %}/ Websites{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <p class="intro center">
+        {% if filters %}
+            {% if filters.active %}
+                There are currently {{ active_website_count }} active website{% if active_website_count != 1 %}s{% endif %}. <a href="{{ url_for('get_websites') }}"><strong>View all</strong></a>.
+            {% else %}
+                There are currently {{ pending_website_count }} pending website{% if pending_website_count != 1 %}s{% endif %}. {% if current_user %} <a href="{{ url_for('get_submit_website') }}"><strong>Submit a new one</strong></a>.{% endif %} <a href="{{ url_for('get_websites') }}"><strong>View all</strong></a>.
+            {% endif %}
+        {% else %}
+            There are currently <a href="{{ url_for('get_active_websites') }}">{{ active_website_count }} active website{% if active_website_count != 1 %}s{% endif %}</a> and <a href="{{ url_for('get_pending_websites') }}">{{ pending_website_count }} pending website{% if pending_website_count != 1 %}s{% endif %}</a>. {% if current_user %} <a href="{{ url_for('get_submit_website') }}"><strong>Submit a new one</strong></a>.{% endif %}
+        {% endif %}
+    </p>
+</div>
+
+<div class="wrapper">
+    <table width="100%">
+        <thead><tr>
+            <th>ID</th>
+            <th>Active</th>
+            <th>Root URL</th>
+            <th>Submitted by</th>
+            <th>Submitted on</th>
+            <th>Votes</th>
+            <th>Last Crawl</th>
+            <th></th>
+        </tr></thead>
+        <tbody>
+            {% for website in websites %}
+            <tr>
+                <td>{{ website.hash_id }}</td>
+                <td>{% if website.active %}YES{% else %}NO{% endif %}</td>
+                <td>{{ website.root_url }}</td>
+                <td>{{ website.submitted_by_user.name }}</td>
+                <td>{{ website.date_created_utc }}</td>
+                <td>{{ website.upvote_userids|length }}</td>
+                <td>
+                    {% if website.active and website.date_crawled_utc %}
+                        {{ website.date_crawled_utc }}
+                    {% else %}&mdash;{% endif %}
+                </tds>
+                <td class="fitwidth">
+                {% if current_user %}
+                    {% if not website.active %}
+                        {% if current_user.id not in website.upvote_userids %}
+                        <form
+                            class="inline"
+                            method="POST"
+                            action="{{ url_for('post_upvote_website', hashed_id=website.hash_id) }}"
+                        >
+                            <button class="green" type="submit">Upvote</button>
+                        </form>
+                        {% else %}
+                        <form
+                            class="inline"
+                            method="POST"
+                            action="{{ url_for('post_unvote_website', hashed_id=website.hash_id) }}"
+                        >
+                            <button class="red" type="submit">Unvote</button>
+                        </form>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if has_user_level(settings.MODERATOR_LEVEL) %}
+                        <a class="button" href="{{ url_for('get_edit_website', hashed_id=website.hash_id) }}">Edit</a>
+                    {% endif %}
+                {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
