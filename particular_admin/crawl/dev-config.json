@@ -1,0 +1,16 @@
+{
+    "projectdb": "local+projectdb://./particular_admin/crawl/generic_crawler.py",
+
+    "taskdb": "mysql+taskdb://root:root@localhost:3306/taskdb",
+    "resultdb": "mysql+resultdb://root:root@localhost:3306/resultdb",
+
+    "message_queue": "redis://localhost:6379",
+
+    "result-worker": {
+        "result-cls": "particular_admin.crawl.indexer.ElasticsearchIndexer"
+    },
+
+    "webui": {
+        "port": 5002
+    }
+}
