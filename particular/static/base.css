@@ -1,0 +1,65 @@
+/*
+    Base */
+
+body {
+    background: #F7F7F7;
+    font-size: 16px;
+    font-family: Helvetica Neue;
+    margin: 0;
+    color: #666;
+}
+
+a {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 2px;
+    transition: 150ms;
+    color: #2cb67d;
+}
+a:hover {
+    text-decoration-color: #D7D7D7;
+}
+
+input, textarea, button, .button {
+    padding: 5px;
+    font-size: 18px;
+    font-family: 'Helvetica Neue';
+    border: none;
+}
+button, .button {
+    cursor: pointer;
+    background: #999;
+    color: white;
+    text-decoration: none;
+    line-height: 24px;
+    display: inline-block;
+}
+button.green {
+    background: #2cb67d;
+}
+button.red {
+    background: #e53170;
+}
+
+p {
+    line-height: 24px;
+}
+
+
+/*
+    Layout */
+
+div.wrapper {
+    margin: 0 auto;
+    max-width: 1300px;
+}
+
+div.small-wrapper {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+div.tiny-wrapper {
+    margin: 0 auto;
+    max-width: 400px;
+}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <title>Particular - the fussy search engine</title>
+
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='base.css') }}"
+    />
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='search.css') }}"
+    />
+</head>
+<body>
+    <section id="content">
+        <div class="small-wrapper">
+            <form
+                id="search"
+                method="GET"
+                action="{{ url_for('get_index') }}"
+            >
+                <input
+                    name="q"
+                    type="text"
+                    tabindex="1"
+                    value="{{ request.args.q }}"
+                    placeholder="Find something particular..."
+                    {% if not results %}autofocus{% endif %}
+                />
+                <button class="green" type="submit">&rarr;</button>
+            </form>
+
+            {% if results is defined %}
+                <div class="results">
+                    <h1>
+                        Found {{ results_total }}
+                        result{% if results_total != 1 %}s{% endif %}
+                        from {{ domains|length }} domains
+                        <a href="{{ url_for('get_index') }}">&larr; back</a>
+                    </h1>
+                    {% for result in results %}
+                        <a class="result" href="{{ result.url }}">
+                            <strong>{{ result.title }}</strong>
+                            <img width="16px" src="https://icons.duckduckgo.com/ip3/{{ result.domain }}.ico" />
+                            <span class="url">{{ result.url }}</span>
+                            <span class="excerpt">{{ result.excerpt|truncate(180) }}</span>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="meta">
+                <span>
+                    <a href="{{ settings.ADMIN_URL }}/about">what is this?</a>
+                </span>
+                <span>
+                    <a href="{{ settings.ADMIN_URL }}/websites">websites</a> &middot;
+                    <a href="{{ settings.ADMIN_URL }}">admin</a>
+                </span>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="about">
+    <p><strong>Particular</strong> is a search engine that only indexes a small slice of the web, as chosen by it's users.</p>
+    <p>Websites are voted for inclusion in the index by users. Anyone can <a href="#">become a user</a> and contribute votes and websites. All websites we crawl must conform to some <a href="#">reasonable rules</a> regarding well built websites. Once these have been verified, and sufficient votes gained, a site will be added to the index and crawled.</p>
+    <p><a href="{{ url_for('get_index') }}">&larr; back to Particular</a></p>
+</div>
+{% endblock %}
