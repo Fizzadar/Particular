@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="tiny-wrapper">
+    <h1>{{ error.code }}: {{ error.name }}</h1>
+    <p>{{ error.description }}</p>
+    {% if request.referrer and error.code in (400, 404) %}
+        <a href="{{ request.referrer }}">&larr; go back</a>
+    {% endif %}
+</div>
+{% endblock %}
