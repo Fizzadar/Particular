@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <title>Particular - the fussy search engine</title>
+
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('particular_static', filename='base.css') }}"
+    />
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='admin.css') }}"
+    />
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <div>
+                <a class="home-link" href="{{ url_for('get_index') }}">Particular</a>
+                {% block page_title %}{% endblock %}
+            </div>
+
+            <nav>
+                <a href="{{ settings.SEARCH_URL }}">Search</a> &middot;
+                <!-- <a href="#">Pages</a> &middot; -->
+                <a href="{{ url_for('get_websites') }}">Websites</a> &middot;
+                {% if current_user %}
+                    <a href="{{ url_for('get_account') }}">Account</a> &middot;
+                    <a href="{{ url_for('get_logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('get_login') }}">Login</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <section id="content">
+        {% block content %}{% endblock %}
+    </section>
+
+    <footer>
+        <div class="wrapper">
+            &copy; 2019
+        </div>
+    </footer>
+</body>
+</html>
