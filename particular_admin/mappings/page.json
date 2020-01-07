@@ -1,0 +1,46 @@
+{
+    "dynamic": false,
+    "properties": {
+        "authors": {
+            "type": "text"
+        },
+        "date_modify": {
+            "type": "date",
+            "format": "date_optional_time"
+        },
+        "date_publish": {
+            "type": "date",
+            "format": "date_optional_time"
+        },
+        "description": {
+            "type": "text"
+        },
+        "filename": {
+            "type": "keyword"
+        },
+        "image_url": {
+            "type": "keyword"
+        },
+        "language": {
+            "type": "keyword"
+        },
+        "source_domain": {
+            "type": "keyword"
+        },
+        "text": {
+            "type": "text"
+        },
+        "title": {
+            "type": "text"
+        },
+        "title_page": {
+            "type": "text"
+        },
+        "title_rss": {
+            "type": "text"
+        },
+        "url": {
+            "type": "keyword"
+        }
+    }
+}
